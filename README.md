@@ -50,3 +50,5 @@ createRoot(document.querySelector('#app')).render(
     </CounterContext.Provider>
 );
 ```
+
+A React app can have multiple live stores, whether in a single React Context or in separate Contexts.
