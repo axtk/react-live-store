@@ -13,7 +13,7 @@ So, in order to make changes of an object stored in a React Context observable b
 ## Example
 
 ```jsx
-import {useContext} from 'react';
+import {createContext, useContext} from 'react';
 import {LiveStore, useLiveStore} from 'react-live-store';
 import {createRoot} from 'react-dom/client';
 
