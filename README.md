@@ -14,7 +14,7 @@ So, in order to make changes of an object stored in a React Context observable b
 
 ```jsx
 import {useContext} from 'react';
-import {createLiveContext, useLiveContext} from 'react-live-store';
+import {LiveStore, useLiveStore} from 'react-live-store';
 import {createRoot} from 'react-dom/client';
 
 const CounterContext = createContext();
