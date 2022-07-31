@@ -17,12 +17,12 @@ import {useContext} from 'react';
 import {LiveStore, useLiveStore} from 'react-live-store';
 import {createRoot} from 'react-dom/client';
 
-const CounterContext = createContext();
+const AppContext = createContext();
 
 const Display = () => {
     // The `useLiveStore()` hook subscribes this component to
     // changes in the store returned from the context.
-    const state = useLiveStore(useContext(CounterContext));
+    const state = useLiveStore(useContext(AppContext));
 
     // Whenever any part of the live store value is updated,
     // the component runs a re-render to update its content
@@ -34,7 +34,7 @@ const Display = () => {
 };
 
 const PlusButton = () => {
-    const state = useLiveStore(useContext(CounterContext));
+    const state = useLiveStore(useContext(AppContext));
 
     // Nested properties of a live store value being mutated
     // produce notifications for subscribed components to re-render
@@ -45,9 +45,9 @@ const PlusButton = () => {
 const App = () => <div><PlusButton/> <Display/></div>;
 
 createRoot(document.querySelector('#app')).render(
-    <CounterContext.Provider value={new LiveStore({counter: 42})}>
+    <AppContext.Provider value={new LiveStore({counter: 42})}>
         <App/>
-    </CounterContext.Provider>
+    </AppContext.Provider>
 );
 ```
 
