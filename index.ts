@@ -5,7 +5,7 @@ import {Observable, Observer, ObserverOptions} from 'object-observer';
 export type LiveObject<T extends object> = Observable & T;
 
 export type UpdateHandler = Observer;
-export type UpdateHandlerOptions = ObserverOptions;
+export type UpdateHandlerOptions = ObserverOptions | string;
 
 const isObject = <T = unknown>(value: T): value is NonNullable<T> =>
     value !== null && typeof value === 'object';
