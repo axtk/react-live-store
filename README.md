@@ -22,24 +22,24 @@ const AppContext = createContext();
 const Display = () => {
     // The `useLiveStore()` hook subscribes this component to
     // changes in the store returned from the context.
-    const state = useLiveStore(useContext(AppContext));
+    const liveState = useLiveStore(useContext(AppContext));
 
     // Whenever any part of the live store value is updated,
     // the component runs a re-render to update its content
     // accordingly.
-    return <span>{state.counter}</span>;
+    return <span>{liveState.counter}</span>;
     // The response to changes is asynchronous and occurs once
     // per a set of sync value updates so as not to overwhelm
     // components with redundant notifications.
 };
 
 const PlusButton = () => {
-    const state = useLiveStore(useContext(AppContext));
+    const liveState = useLiveStore(useContext(AppContext));
 
     // Nested properties of a live store value being mutated
     // produce notifications for subscribed components to re-render
     // (which is not the case with plain objects).
-    return <button onClick={() => state.counter++}>+</button>;
+    return <button onClick={() => liveState.counter++}>+</button>;
 };
 
 const App = () => <div><PlusButton/> <Display/></div>;
