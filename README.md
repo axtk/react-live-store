@@ -8,7 +8,7 @@ A plain object stored in the React's `useContext()` hook produces a re-render on
 
 The `LiveStore` class introduced by this package makes an underlying object trigger an event whenever it's changed, and the `useLiveStore()` hook subscribes a React component to these changes in order to produce a re-render to update the component's content.
 
-So, in order to make changes of an object stored in a React Context observable by other components, it's sufficient to replace the object with an instance of the `LiveStore` class and to read its value from the `useLiveStore()` hook.
+So, in order to make changes of an object stored in a React Context observable by other components, it's sufficient to wrap the object into an instance of the `LiveStore` class and to retrieve its value with the `useLiveStore()` hook.
 
 ## Example
 
