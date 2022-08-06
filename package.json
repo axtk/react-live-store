@@ -24,10 +24,6 @@
   ],
   "author": "axtk",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/axtk/react-live-store/issues"
-  },
-  "homepage": "https://github.com/axtk/react-live-store#readme",
   "dependencies": {
     "object-observer": "5.0.0"
   },
