@@ -10,11 +10,11 @@ export type UpdateHandlerOptions = ObserverOptions | string;
 const isObject = <T = unknown>(value: T): value is NonNullable<T> =>
     value !== null && typeof value === 'object';
 
-export class LiveStore<T extends object = {}> {
+export class Store<T extends object = {}> {
     value: LiveObject<T>;
     constructor(value: T) {
         if (!isObject(value))
-            throw new Error('LiveStore value should be an object');
+            throw new Error('Store value should be an object');
         this.value = Observable.from(value, {async: true});
     }
     observe(callback: UpdateHandler, options?: UpdateHandlerOptions) {
@@ -31,24 +31,24 @@ export class LiveStore<T extends object = {}> {
     }
 }
 
-export function useLiveStore<T extends object>(
-    liveStore: LiveStore<T>,
+export function useStore<T extends object>(
+    store: Store<T>,
     options?: UpdateHandlerOptions,
 ): LiveObject<T> {
     let [, setRevision] = useState(0);
 
-    if (!(liveStore instanceof LiveStore))
-        throw new Error('The first argument should be an instance of LiveStore');
+    if (!(store instanceof Store))
+        throw new Error('The first argument should be an instance of Store');
 
     useEffect(() => {
-        liveStore.observe(() => {
+        store.observe(() => {
             setRevision(revision => revision === Number.MAX_SAFE_INTEGER ? 0 : revision + 1);
         }, options);
 
         return () => {
-            liveStore.unobserve();
+            store.unobserve();
         };
-    }, [liveStore, options]);
+    }, [store, options]);
 
-    return liveStore.value;
+    return store.value;
 }
