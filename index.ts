@@ -7,13 +7,10 @@ export type LiveObject<T extends object> = Observable & T;
 export type UpdateHandler = Observer;
 export type UpdateHandlerOptions = ObserverOptions | string;
 
-const isObject = <T = unknown>(value: T): value is NonNullable<T> =>
-    value !== null && typeof value === 'object';
-
 export class Store<T extends object = {}> {
     value: LiveObject<T>;
     constructor(value: T) {
-        if (!isObject(value))
+        if (value === null || typeof value !== 'object')
             throw new Error('Store value should be an object');
         this.value = Observable.from(value, {async: true});
     }
