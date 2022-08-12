@@ -23,12 +23,6 @@ export class Store<T extends object = {}> {
     unobserve() {
         Observable.unobserve(this.value);
     }
-    valueOf() {
-        return this.value.valueOf();
-    }
-    toString() {
-        return this.value.toString();
-    }
 }
 
 export function useStore<T extends object>(
