@@ -42,7 +42,7 @@ export function useStore<T extends object>(
 
     useEffect(() => {
         store.observe(() => {
-            setRevision(revision => revision === Number.MAX_SAFE_INTEGER ? 0 : revision + 1);
+            setRevision(Math.random());
         }, options);
 
         return () => {
