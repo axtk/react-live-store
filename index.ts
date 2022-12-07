@@ -8,17 +8,17 @@ export type UpdateHandler = Observer;
 export type UpdateHandlerOptions = ObserverOptions | string;
 
 export class Store<T extends object = {}> {
-    value: LiveObject<T>;
-    constructor(value: T) {
-        if (value === null || typeof value !== 'object')
+    state: LiveObject<T>;
+    constructor(state: T) {
+        if (state === null || typeof state !== 'object')
             throw new Error('Store value should be an object');
-        this.value = Observable.from(value, {async: true});
+        this.state = Observable.from(state, {async: true});
     }
     observe(callback: UpdateHandler, options?: UpdateHandlerOptions) {
-        Observable.observe(this.value, callback, typeof options === 'string' ? {pathsFrom: options} : options);
+        Observable.observe(this.state, callback, typeof options === 'string' ? {pathsFrom: options} : options);
     }
     unobserve() {
-        Observable.unobserve(this.value);
+        Observable.unobserve(this.state);
     }
 }
 
@@ -44,5 +44,5 @@ export function useStore<T extends object>(
         };
     }, [store, options]);
 
-    return store.value;
+    return store.state;
 }
