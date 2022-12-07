@@ -24,7 +24,7 @@ export class Store<T extends object = {}> {
 
 export function useStore<T extends object>(
     store: Store<T>,
-    options?: UpdateHandlerOptions,
+    options?: UpdateHandlerOptions | null,
 ): LiveObject<T> {
     let [, setRevision] = useState(0);
 
@@ -32,6 +32,9 @@ export function useStore<T extends object>(
         throw new Error('The first argument should be an instance of Store');
 
     useEffect(() => {
+        if (options === null)
+            return;
+
         store.observe(() => {
             setRevision(Math.random());
         }, options);
