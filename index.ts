@@ -24,6 +24,11 @@ export class Store<T extends object = {}> {
 
 export function useStore<T extends object>(
     store: Store<T>,
+    /**
+     * Passing `null` or `false` will turn off the subscription to store changes.
+     * Passing a string key of a nested object in the store state will result in
+     * a subscription to changes in that object.
+     */
     options?: UpdateHandlerOptions | null | false,
 ): LiveObject<T> {
     let [, setRevision] = useState(0);
