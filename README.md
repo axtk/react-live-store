@@ -6,7 +6,7 @@
 
 A plain object stored in the React's `useContext()` hook produces a re-render only if the entire object value has changed, which requires extra effort of mutating the object to convey a single nested property change.
 
-The `Store` class introduced by this package makes an object capable of triggering an event whenever it's changed, and the `useStore()` hook subscribes a React component to the changes in a store.
+The `Store` class from this package makes an object capable of triggering an event whenever it's mutated, while the `useStore()` hook subscribes a React component to such events.
 
 ## Example
 
