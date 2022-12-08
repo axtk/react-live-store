@@ -40,6 +40,6 @@ createRoot(document.querySelector('#app')).render(
 );
 ```
 
-A React app can have multiple stores, whether in a single React Context or in separate Contexts.
-
 By passing a string key of a nested object in the state as the second parameter of the `useStore()` hook it is possible to subscribe to changes in this particular part of the store. Passing `null` or `false` as the second parameter will turn off the subscription to store changes altogether.
+
+A React app can have multiple stores, whether in a single React Context or in separate Contexts.
